@@ -8,6 +8,7 @@ Ab_postalPriceCalculator is a native Android mobile application designed to comp
 	3. depth,
 	4. weight,
 	5. destination
+
 The postal rates are calculated based of the prices listed by CanadaPost at
 https://www.canadapost.ca/cpo/mc/personal/ratesprices/postalprices.jsf
 
