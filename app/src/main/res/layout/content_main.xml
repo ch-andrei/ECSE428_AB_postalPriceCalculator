@@ -1,19 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:label="Amp Postal Rate Calculator"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="andreic.amppostalratecalculator.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <Spinner
+        android:id="@+id/lettermail_type_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Hello"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:id="@+id/destination_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_centerHorizontal="true"/>
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Package Details"
+        android:textSize="20dp"
+        android:id="@+id/textView1"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/enter_weight"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:hint="Enter weight"
+        android:singleLine="true"
+        android:layout_marginTop="15dp"
+        android:textAlignment="center"
+        android:background="@android:drawable/edit_text"/>
+
+    <EditText
+        android:id="@+id/enter_length"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:hint="Enter length"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:background="@android:drawable/edit_text"/>
+
+    <EditText
+        android:id="@+id/enter_width"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:hint="Enter width"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:background="@android:drawable/edit_text"/>
+
+    <EditText
+        android:id="@+id/enter_depth"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:hint="Enter depth"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:background="@android:drawable/edit_text"/>
+
+</LinearLayout>
