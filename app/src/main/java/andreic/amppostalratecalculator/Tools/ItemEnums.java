@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Vlad on 2016-02-10.
+ * Created by AndreiCH on 2016-02-10.
  */
 public interface ItemEnums {
 
