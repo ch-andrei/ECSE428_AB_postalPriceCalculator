@@ -1,31 +1,25 @@
 package andreic.amppostalratecalculator;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import andreic.amppostalratecalculator.Tools.CustomArrayAdapter;
+import andreic.amppostalratecalculator.Tools.ItemEnums;
 
+public class MainActivity extends AppCompatActivity implements ItemEnums{
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
-public class MainActivity extends AppCompatActivity {
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    // declare UI fields
+    Spinner lettermail_menu_spinner, destination_menu_spinner;
+    EditText weight_field, length_field, depth_field , width_field;
+    TextView postal_rate_field;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // init and link drop menus
+        setUpUIelements();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,34 +39,121 @@ public class MainActivity extends AppCompatActivity {
                 computePostalRate();
             }
         });
-
-        // init and link drop menus
-        setUpDropMenus();
-
-
     }
 
-    protected void setUpDropMenus(){
-        // init spinners and adapters
-        Spinner lettermail_type_spinner = (Spinner) findViewById(R.id.lettermail_type_spinner);
-        String[] lettermail_menu_items = new String[]{"Standard", "Non-standard and Oversize","Select a lettermail type"};
-        ArrayAdapter<String> lettermail_menu_adapter = new CustomArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, lettermail_menu_items);
+    private void setUpUIelements() {
 
-        Spinner destination_menu_spinner = (Spinner) findViewById(R.id.destination_spinner);
-        String[] destination_menu_items = new String[]{"Canada", "USA", "International", "Select a destination"};
-        ArrayAdapter<String> destination_menu_adapter = new CustomArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, destination_menu_items);
+        weight_field = (EditText) findViewById(R.id.enter_weight);
+        length_field = (EditText) findViewById(R.id.enter_length);
+        depth_field = (EditText) findViewById(R.id.enter_depth);
+        width_field = (EditText) findViewById(R.id.enter_width);
+        postal_rate_field = (TextView) findViewById(R.id.postal_rate_result);
+
+        // init spinners and adapters
+        lettermail_menu_spinner = (Spinner) findViewById(R.id.lettermail_type_spinner);
+
+        ArrayAdapter<String> lettermail_menu_adapter = new CustomArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, ItemEnums.letter_types);
+
+        destination_menu_spinner = (Spinner) findViewById(R.id.destination_spinner);
+        ArrayAdapter<String> destination_menu_adapter = new CustomArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, ItemEnums.destinations);
 
         // link spinners and adapters
-        lettermail_menu_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); ;
-        lettermail_type_spinner.setAdapter(lettermail_menu_adapter);
-        lettermail_type_spinner.setSelection(lettermail_menu_adapter.getCount()); //display hint
+        lettermail_menu_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        lettermail_menu_spinner.setAdapter(lettermail_menu_adapter);
+        lettermail_menu_spinner.setSelection(lettermail_menu_adapter.getCount()); //display hint
 
         destination_menu_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         destination_menu_spinner.setAdapter(destination_menu_adapter);
         destination_menu_spinner.setSelection(destination_menu_adapter.getCount()); //display hint
     }
 
-    protected void computePostalRate(){
+    private void computePostalRate() {
+        // init vars and set to defaults
+        String destination, type;
+        destination = type = "";
 
+        double weight, length, depth, width;
+        weight = depth = length = width = 0;
+
+        boolean complete, any_in, weight_in, length_in, depth_in, width_in;
+        any_in = false;
+        complete = weight_in = length_in = depth_in = width_in = true;
+        // all vars init
+
+        // get all required inputs from UI
+        type = lettermail_menu_spinner.getSelectedItem().toString();
+        if (type.equals(ItemEnums.letter_types[letter_types.length-1])){
+            // if user did not select anything
+            complete = false;
+        }
+
+        destination = destination_menu_spinner.getSelectedItem().toString();
+        if (destination.equals(ItemEnums.destinations[destinations.length-1])){
+            // if user did not select anything
+            complete = false;
+        }
+
+        try {
+            weight = Double.valueOf(weight_field.getText().toString());
+            any_in = true;
+        } catch (Exception e) {
+            weight_in = false;
+        }
+        try {
+            length = Double.valueOf(length_field.getText().toString());
+            any_in = true;
+        } catch (Exception e) {
+            length_in = false;
+        }
+        try {
+            depth = Double.valueOf(depth_field.getText().toString());
+            any_in = true;
+        } catch (Exception e) {
+            depth_in = false;
+        }
+        try {
+            width = Double.valueOf(width_field.getText().toString());
+            any_in = true;
+        } catch (Exception e) {
+            width_in = false;
+        }
+
+        // TODO error feedback
+        if (any_in) {
+            if (!weight_in) {
+                weight_field.setError(getString(R.string.missing_field));
+                complete = false;
+            }
+            if (!length_in) {
+                length_field.setError(getString(R.string.missing_field));
+                complete = false;
+            }
+            if (!depth_in) {
+                depth_field.setError(getString(R.string.missing_field));
+                complete = false;
+            }
+            if (!width_in) {
+                width_field.setError(getString(R.string.missing_field));
+                complete = false;
+            }
+        }
+
+        double postal_rate = 0;
+
+        if (complete){
+            // TODO compute postal rate
+            postal_rate = computePostalRate(weight,length,depth,width,type,destination);
+            Toast.makeText(MainActivity.this, "Computed rate!", Toast.LENGTH_SHORT).show();
+            postal_rate_field.setText("" + postal_rate);
+        }
+        else {
+            postal_rate_field.setText(null);
+        }
+
+
+    }
+
+    private double computePostalRate(double weight, double length, double depth, double width, String type, String destination){
+        return 1.0;
     }
 }

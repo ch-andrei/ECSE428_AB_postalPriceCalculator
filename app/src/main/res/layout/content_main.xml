@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:label="Amp Postal Rate Calculator"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:label="Amp Postal Rate Calculator"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -17,76 +17,137 @@
         android:id="@+id/lettermail_type_spinner"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Hello"
+        android:layout_centerHorizontal="true"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
-        android:layout_centerHorizontal="true"/>
+        android:text="Hello" />
 
     <Spinner
         android:id="@+id/destination_spinner"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
         android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        android:layout_centerHorizontal="true"/>
+        android:spinnerMode="dropdown" />
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="Package Details"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Package Details"
-        android:textSize="20dp"
-        android:id="@+id/textView1"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"/>
+        android:textSize="20dp" />
 
-    <EditText
-        android:id="@+id/enter_weight"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="numberDecimal"
-        android:maxLines="1"
-        android:hint="Enter weight"
-        android:singleLine="true"
-        android:layout_marginTop="15dp"
-        android:textAlignment="center"
-        android:background="@android:drawable/edit_text"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/enter_length"
+        <EditText
+            android:id="@+id/enter_weight"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:drawable/edit_text"
+            android:hint="Enter weight"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="weight\n(g)"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="numberDecimal"
-        android:maxLines="1"
-        android:hint="Enter length"
-        android:singleLine="true"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:background="@android:drawable/edit_text"/>
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/enter_width"
+        <EditText
+            android:id="@+id/enter_length"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:drawable/edit_text"
+            android:hint="Enter length"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="length\n(mm)"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="numberDecimal"
-        android:maxLines="1"
-        android:hint="Enter width"
-        android:singleLine="true"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:background="@android:drawable/edit_text"/>
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/enter_depth"
+        <EditText
+            android:id="@+id/enter_width"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:background="@android:drawable/edit_text"
+            android:hint="Enter width"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="width\n(mm)"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="numberDecimal"
-        android:maxLines="1"
-        android:hint="Enter depth"
-        android:singleLine="true"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:background="@android:drawable/edit_text"/>
+        android:orientation="horizontal">
 
+        <EditText
+            android:id="@+id/enter_depth"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:background="@android:drawable/edit_text"
+            android:hint="Enter depth"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="depth\n(mm)"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15dp" />
+    </LinearLayout>
 </LinearLayout>
