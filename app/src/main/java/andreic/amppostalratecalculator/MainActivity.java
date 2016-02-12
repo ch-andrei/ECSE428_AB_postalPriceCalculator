@@ -15,17 +15,17 @@ import andreic.amppostalratecalculator.Tools.CustomArrayAdapter;
 import andreic.amppostalratecalculator.Tools.ItemEnums;
 
 /**
- * Created by AndreiCH on 2016-02-10.
+ * Created by AndreiCh on 2016-02-10.
  */
-public class MainActivity extends AppCompatActivity implements ItemEnums{
+public class MainActivity extends AppCompatActivity implements ItemEnums {
 
     // declare UI fields
-    Spinner lettermail_menu_spinner, destination_menu_spinner;
-    EditText weight_field, length_field, depth_field , width_field;
-    TextView postal_rate_field;
+    protected Spinner lettermail_menu_spinner, destination_menu_spinner;
+    protected EditText weight_field, length_field, depth_field, width_field;
+    protected TextView postal_rate_field;
 
     // error flag
-    public boolean error_flag = false;
+    protected boolean error_flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements ItemEnums{
     /**
      * initialize and link all UI elements and fields
      */
-    private void setUpUIelements() {
+    protected void setUpUIelements() {
         // init text fields
         weight_field = (EditText) findViewById(R.id.enter_weight);
         length_field = (EditText) findViewById(R.id.enter_length);
@@ -75,9 +75,12 @@ public class MainActivity extends AppCompatActivity implements ItemEnums{
         destination_menu_spinner.setSelection(destination_menu_adapter.getCount()); //display hint
     }
 
-    private void computePostalRate() {
+    /**
+     * calculates and displays postal rate based on inputs entered through UI. Handles errors and provides visual error feedback.
+     */
+    protected void computePostalRate() {
 
-        // reset gloval error flag
+        // reset global error flag
         error_flag = false;
 
         // init vars and set to defaults
@@ -92,18 +95,20 @@ public class MainActivity extends AppCompatActivity implements ItemEnums{
         complete = weight_in = length_in = depth_in = width_in = true;
 
         View focus = null;
+
+        double postal_rate = 0;
         // all vars were init
 
         // get all required inputs from UI
 
         type = lettermail_menu_spinner.getSelectedItem().toString();
-        if (type.equals(ItemEnums.letter_types[letter_types.length-1])){
+        if (type.equals(ItemEnums.letter_types[letter_types.length - 1])) {
             // if user did not select anything
             focus = lettermail_menu_spinner;
             complete = false;
         }
         destination = destination_menu_spinner.getSelectedItem().toString();
-        if (destination.equals(ItemEnums.destinations[destinations.length-1])){
+        if (destination.equals(ItemEnums.destinations[destinations.length - 1])) {
             // if user did not select anything
             focus = destination_menu_spinner;
             complete = false;
@@ -157,24 +162,36 @@ public class MainActivity extends AppCompatActivity implements ItemEnums{
             }
         }
 
-        double postal_rate = 0;
-
-        if (complete){
+        if (complete) {
             // compute postal rate
-            postal_rate = computePostalRate(weight,length,depth,width,type,destination);
+            postal_rate = computePostalRate(length, width, depth, weight, type, destination);
             Toast.makeText(MainActivity.this, "Computed rate!", Toast.LENGTH_SHORT).show();
             postal_rate_field.setText("" + postal_rate);
-        }
-        else {
+        } else {
             error_flag = true;
             if (focus != null) {
                 focus.requestFocus();
             }
+            Toast.makeText(MainActivity.this, "Could not compute rate!", Toast.LENGTH_SHORT).show();
             postal_rate_field.setText(getString(R.string.invalid_inputs));
         }
     }
 
-    private double computePostalRate(double weight, double length, double depth, double width, String type, String destination){
+    /**
+     * computes final postal rate based on the inputs.
+     *
+     * @param weight
+     * @param length
+     * @param depth
+     * @param width
+     * @param type
+     * @param destination
+     * @return
+     */
+    protected static double computePostalRate(double length, double width, double depth, double weight, String type, String destination) {
+        // TODO compute rate
         return 1.0;
     }
+
+
 }
