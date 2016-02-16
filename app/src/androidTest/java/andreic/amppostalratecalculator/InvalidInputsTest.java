@@ -23,17 +23,17 @@ public class InvalidInputsTest {
 
     @Test
     public void invalidInputTest1() throws Exception {
-        assertEquals(MainActivity.computePostalRate(0, -2, 0, 100000, "Standard", null), 10.0, 0.1);
+        assertEquals(MainActivity.computePostalRate(0, -2, 0, 100000, null), -1, 0.1);
     }
 
     @Test
     public void invalidInputTest2() throws Exception {
-        assertEquals(MainActivity.computePostalRate(0, 123213213, -5, 12, "Standard", "asdadsad"), 5.0, 0.1);
+        assertEquals(MainActivity.computePostalRate(0, 123213213, -5, 12, "asdadsad"), -1, 0.1);
     }
 
     @Test
     public void invalidInputTest3() throws Exception {
-        assertEquals(MainActivity.computePostalRate(0, 123213213, -5, 12, "", ""), 5.0, 0.1);
+        assertEquals(MainActivity.computePostalRate(0, 123213213, -5, 12, ""), -1, 0.1);
     }
 
     // TODO

@@ -14,18 +14,9 @@
     tools:showIn="@layout/activity_main">
 
     <Spinner
-        android:id="@+id/lettermail_type_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"
-        android:text="Hello" />
-
-    <Spinner
         android:id="@+id/destination_spinner"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_centerHorizontal="true"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown" />
@@ -35,44 +26,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:text="Package Details"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="20dp" />
+        android:textSize="22dp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/enter_weight"
-            android:layout_width="270dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_vertical"
-            android:background="@android:drawable/edit_text"
-            android:hint="Enter weight"
-            android:inputType="numberDecimal"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textAlignment="center" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="weight\n(g)"
-            android:textAlignment="center"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="15dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <EditText
@@ -100,7 +64,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <EditText
@@ -127,7 +91,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <EditText
@@ -146,6 +110,34 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="depth\n(mm)"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/enter_weight"
+            android:layout_width="270dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:drawable/edit_text"
+            android:hint="Enter weight"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="weight\n(g)"
             android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="15dp" />
