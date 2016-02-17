@@ -15,7 +15,7 @@ import andreic.amppostalratecalculator.Tools.CustomArrayAdapter;
 import andreic.amppostalratecalculator.Tools.ItemEnums;
 
 /**
- * Created by AndreiCh on 2016-02-10.
+ * Created by Andrei Chubarau and Nadine Bou Khzam on 2016-02-10.
  */
 public class MainActivity extends AppCompatActivity implements ItemEnums {
 
@@ -108,13 +108,6 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
             weight_in = false;
         }
         try {
-            length = Double.valueOf(length_field.getText().toString());
-            any_in = true;
-        } catch (Exception e) {
-            focus = length_field;
-            length_in = false;
-        }
-        try {
             depth = Double.valueOf(depth_field.getText().toString());
             any_in = true;
         } catch (Exception e) {
@@ -127,6 +120,13 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
         } catch (Exception e) {
             focus = width_field;
             width_in = false;
+        }
+        try {
+            length = Double.valueOf(length_field.getText().toString());
+            any_in = true;
+        } catch (Exception e) {
+            focus = length_field;
+            length_in = false;
         }
 
         // set text field errors if missing inputs
@@ -179,11 +179,9 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
      */
     protected static double computePostalRate(double length, double width, double depth, double weight, String destination) {
         String type;
-
         if (destination == null) {
             return -1.0;
         }
-
         // determine type
         type = "";
         if (140 <= length && length <= 380 &&
@@ -195,7 +193,6 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
             } else {
                 type = "Non-standard and Oversize";
             }
-
         }
         // TODO compute rate
         if (type.equals("Standard")) {

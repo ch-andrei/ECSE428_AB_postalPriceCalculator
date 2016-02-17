@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by AndreiCh on 2016-02-11.
+ * Created by Andrei Chubarau and Nadine Bou Khzam on 2016-02-11.
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -20,9 +20,8 @@ public class ValidInputsTest {
 
     // SOME FORMATTING AND USED STRING VALUES
 
-    //    final String[] letter_types = new String[]{"Standard", "Select a lettermail type"};
     //    final String[] destinations = new String[]{"Canada", "USA", "International", "Select a destination"};
-    //    protected static double computePostalRate(double length, double width, double depth, double weight, String type, String destination)
+    //    protected static double computePostalRate(double length, double width, double depth, double weight, String destination)
 
     @Test
     public void validInputTest1() throws Exception{
@@ -108,4 +107,5 @@ public class ValidInputsTest {
     public void validInputTest17() throws Exception{
         assertEquals(20.60, MainActivity.computePostalRate(250, 150, 10, 300, "International" ), delta);
     }
+
 }

@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by AndreiCh on 2016-02-11.
+ * Created by Andrei Chubarau and Nadine Bou Khzam on 2016-02-11.
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
