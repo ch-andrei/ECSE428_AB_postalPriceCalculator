@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
             // compute postal rate
             postal_rate = computePostalRate(length, width, depth, weight, destination);
             Toast.makeText(MainActivity.this, "Computed rate!", Toast.LENGTH_SHORT).show();
-            if (postal_rate>=0) //(postal_rate != -1.0)
+            if (postal_rate>=0)
                 postal_rate_field.setText("" + postal_rate + "$");
             else
                 postal_rate_field.setText(getString(R.string.invalid_input_combination));
