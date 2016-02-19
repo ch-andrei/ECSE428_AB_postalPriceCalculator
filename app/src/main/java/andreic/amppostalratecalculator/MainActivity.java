@@ -72,8 +72,12 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
      * calculates and displays postal rate based on inputs entered through UI. Handles errors and provides visual error feedback.
      */
     protected void computePostalRate() {
-        // reset global error flag
+        // reset error flag
         error_flag = false;
+        weight_field.setError(null);
+        length_field.setError(null);;
+        depth_field.setError(null);;
+        width_field.setError(null);;
 
         // init vars and set to defaults
         String destination, type;
@@ -98,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
             // if user did not select anything
             focus = destination_menu_spinner;
             complete = false;
+        } else {
+            any_in = true;
         }
         try {
             weight = Double.valueOf(weight_field.getText().toString());
@@ -151,11 +157,16 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
         if (complete) {
             // compute postal rate
             postal_rate = computePostalRate(length, width, depth, weight, destination);
-            Toast.makeText(MainActivity.this, "Computed rate!", Toast.LENGTH_SHORT).show();
-            if (postal_rate>=0)
+
+            if (postal_rate >= 0) {
+                Toast.makeText(MainActivity.this, "Computed rate!", Toast.LENGTH_SHORT).show();
                 postal_rate_field.setText("" + postal_rate + "$");
-            else
+            }
+            else {
+                error_flag = true;
                 postal_rate_field.setText(getString(R.string.invalid_input_combination));
+                Toast.makeText(MainActivity.this, "Could not compute rate!", Toast.LENGTH_SHORT).show();
+            }
         } else {
             error_flag = true;
             if (focus != null) {
@@ -179,7 +190,9 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
     protected static double computePostalRate(double length, double width, double depth, double weight, String destination) {
         String type;
 
-        if(destination==null)
+        // stage 1: input error handling
+
+        if(destination == null)
         {
             return -1.0;
         }
@@ -189,6 +202,8 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
         {
             return -2.0;
         }
+
+        // stage 2: compute rate
 
         // determine type
         type = "";
