@@ -28,16 +28,14 @@
         android:layout_width="270dp"
         android:layout_height="50dp"
         android:maxLines="1"
-        android:text="Computed Rate"
-        android:textSize="20dp"
+        android:text="Computed Rate ($)"
+        android:textSize="18dp"
         android:singleLine="true"
         android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:background="@android:drawable/edit_text"
-        android:backgroundTint="#ffffff"
         android:layout_gravity="bottom|start"
         android:layout_margin="@dimen/fab_margin"/>
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
