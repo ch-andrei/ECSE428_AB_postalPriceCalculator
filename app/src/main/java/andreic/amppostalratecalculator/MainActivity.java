@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
      * calculates and displays postal rate based on inputs entered through UI. Handles errors and provides visual error feedback.
      */
     protected void computePostalRate() {
-
         // reset global error flag
         error_flag = false;
 
@@ -153,10 +152,10 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
             // compute postal rate
             postal_rate = computePostalRate(length, width, depth, weight, destination);
             Toast.makeText(MainActivity.this, "Computed rate!", Toast.LENGTH_SHORT).show();
-            if (postal_rate != -1.0)
+            if (postal_rate>=0) //(postal_rate != -1.0)
                 postal_rate_field.setText("" + postal_rate + "$");
             else
-                postal_rate_field.setText(getString(R.string.indvali_input_combination));
+                postal_rate_field.setText(getString(R.string.invalid_input_combination));
         } else {
             error_flag = true;
             if (focus != null) {
@@ -179,9 +178,18 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
      */
     protected static double computePostalRate(double length, double width, double depth, double weight, String destination) {
         String type;
-        if (destination == null) {
+
+        if(destination==null)
+        {
             return -1.0;
         }
+
+        boolean checkDestination = destination.equals("Canada") || destination.equals("USA") || destination.equals("International");
+        if(!checkDestination || length < 140 || length > 380 || width < 90 || width > 270 || depth < 0.18 || depth > 20 || weight < 2 || weight > 500)
+        {
+            return -2.0;
+        }
+
         // determine type
         type = "";
         if (140 <= length && length <= 380 &&
@@ -260,7 +268,8 @@ public class MainActivity extends AppCompatActivity implements ItemEnums {
                 }
             }
         }
-        // else
-        return -1.0;
+
+    // else
+    return -1.0;
     }
 }
