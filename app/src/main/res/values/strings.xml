@@ -2,5 +2,7 @@
     <string name="app_name">Postal Rate Calculator</string>
     <string name="main_activity">Amp Postal Rate Calculator</string>
     <string name="action_settings">Settings</string>
-    
+    <string name="missing_field">Missing input</string>
+    <string name="invalid_input_combination">Invalid input combination</string>
+    <string name="invalid_inputs">Invalid or missing inputs</string>
 </resources>
